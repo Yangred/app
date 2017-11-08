@@ -9,7 +9,6 @@ window.onload = function() {
 	var sign = document.getElementById('sign');
 	var forget = document.getElementById('forget');
 	var sign_con = document.getElementById('sign_con');
-
 	var sign_to = document.getElementById('sign_to');
 	var sign_1 = document.getElementById('sign_1');
 	var sign_2 = document.getElementById('sign_2');
@@ -19,14 +18,11 @@ window.onload = function() {
 	var passWord = [123];
 	var tEl = ['18102572661'];
 	var re = /^1(3|4|5|7|8)\d{9}$/;
-
 	var login_1 = document.getElementById('login_1');
 	var login_2 = document.getElementById('login_2');
-
 	var login = document.getElementById('login');
 	var users = document.getElementById('users');
 	var users_exit = document.getElementById('users_exit');
-
 	var users_logo = document.getElementById('users_logo');
 	var users_name = document.getElementById('users_name');
 	for(var i = 0; i < fooDer_li.length; i++) {
@@ -40,7 +36,6 @@ window.onload = function() {
 			oCon[this.index].style.display = 'block';
 		}
 	}
-
 	login_btn.onclick = function() {
 		this.style.color = '#333';
 		login_con.style.right = '0';
@@ -57,7 +52,6 @@ window.onload = function() {
 		users_exit.style.color = '#666';
 	}
 	//登录模块
-
 	login_in.onclick = function() {
 		this.style.background = '#333';
 		this.style.color = '#eee';
@@ -96,24 +90,20 @@ window.onload = function() {
 		sign.style.background = '#ddd';
 		sign.style.color = '#666';
 		forget.style.color = '#999';
-
 		sign_1.value = '';
 		sign_2.value = '';
 		sign_3.value = '';
 		sign_4.value = '';
 	}
 	/*注册模块*/
-
 	sign_to.onclick = function() {
 		this.style.background = '#333';
 		this.style.color = '#eee';
-
 		if(sign_2.value == sign_3.value && re.test(sign_4.value) && sign_1.value != '' && userName.indexOf(sign_1.value) == -1 && tEl.indexOf(sign_4.value) == -1) {
 			userName.push(sign_1.value);
 			passWord.push(sign_2.value);
 			tEl.push(sign_4.value);
 			alert('注册成功！');
-
 		} else if(sign_1.value == '') {
 			alert('用户名不能为空！');
 		} else if(userName.indexOf(sign_1.value) != -1) {
@@ -130,7 +120,6 @@ window.onload = function() {
 			alert('该手机号码已注册！');
 		}
 	}
-
 	users_exit.onclick = function() {
 		users.style.display = 'none';
 		login.style.display = 'block';
@@ -140,7 +129,6 @@ window.onload = function() {
 		login_in.style.background = '#ddd';
 		login_in.style.color = '#666';
 	}
-
 	var read_set_btn = document.getElementById('read_set_btn');
 	var read_set_con = document.getElementById('read_set_con');
 	var read_set_back = document.getElementById('read_set_back');
@@ -150,7 +138,6 @@ window.onload = function() {
 	read_set_back.onclick = function() {
 		read_set_con.style.right = '-100vw';
 	}
-
 	var about_set_btn = document.getElementById('about_set_btn');
 	var about_set_con = document.getElementById('about_set_con');
 	var about_set_back = document.getElementById('about_set_back');
@@ -160,7 +147,6 @@ window.onload = function() {
 	about_set_back.onclick = function() {
 		about_set_con.style.right = '-100vw';
 	}
-
 	var service_set_btn = document.getElementById('service_set_btn');
 	var service_set_con = document.getElementById('service_set_con');
 	var service_set_back = document.getElementById('service_set_back');
@@ -170,7 +156,6 @@ window.onload = function() {
 	service_set_back.onclick = function() {
 		service_set_con.style.right = '-100vw';
 	}
-
 	var talk_set_btn = document.getElementById('talk_set_btn');
 	var talk_set_con = document.getElementById('talk_set_con');
 	var talk_set_back = document.getElementById('talk_set_back');
@@ -180,7 +165,6 @@ window.onload = function() {
 	talk_set_back.onclick = function() {
 		talk_set_con.style.right = '-100vw';
 	}
-
 	var seach = document.getElementById('seach');
 	var seach_nav = document.getElementById('seach_nav');
 	var seach_nav_li = seach_nav.getElementsByTagName('li');
@@ -189,7 +173,7 @@ window.onload = function() {
 	var books_con = document.getElementById('books_con');
 	var bookrack = document.getElementById('bookrack');
 	var bookrack_books = document.getElementById('bookrack_books');
-
+	var arr_books = [];
 	for(var i = 0; i < seach_nav_li.length; i++) {
 		seach_nav_li[i].index = i;
 		seach_nav_li[i].onclick = function() {
@@ -201,7 +185,6 @@ window.onload = function() {
 			seach_con_li[this.index].style.display = 'block';
 		}
 	}
-
 	if(window.XMLHttpRequest) {
 		var xhr = new XMLHttpRequest();
 	} else {
@@ -211,14 +194,12 @@ window.onload = function() {
 	xhr.send();
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState === 4 && xhr.status === 200) {
-			//只要是ajax获取的都是string JSON.parse将string转换成json
 			var txt = JSON.parse(xhr.responseText);
 			for(var i = 0; i < txt.data.length; i++) {
 				seach_con_li[0].innerHTML += "<div class='books'><img src=" + txt.data[i].img + " alt=" + txt.data[i].title + " /><h3>" + txt.data[i].title + "</h3><p>" + txt.data[i].con + "</p><span><img src='images/user.png' alt='作者' /><h4>" + txt.data[i].writer + "</h4></span><div><span>" + txt.data[i].label[0].label_01 + "</span><span>" + txt.data[i].label[0].label_02 + "</span></div></div>";
 			}
 		}
 		var books = seach_con.getElementsByClassName('books');
-
 		if(books.length != 0) {
 			for(var i = 0; i < books.length; i++) {
 				books[i].index = i;
@@ -234,16 +215,13 @@ window.onload = function() {
 					xhr2.send()
 					xhr2.onreadystatechange = function() {
 						if(xhr2.readyState === 4 && xhr2.status === 200) {
-							//只要是ajax获取的都是string
 							var txt2 = JSON.parse(xhr2.responseText)
 							books_con.innerHTML = "<h3>图书详情</h3><button id='books_con_back'>&lt;</button><img src=" + txt2.data[oIndex].img + "><br /><h4>" + txt2.data[oIndex].title + "</h4><h6 class='books_add'>（点击添加至书架）</h6><br /><span>作者：" + txt2.data[oIndex].writer + "</span><div><h5>简介：</h5><p>" + txt2.data[oIndex].con + "</p></div>";
-
 							var books_add = document.getElementsByClassName('books_add')[0];
 							var books_con_back = document.getElementById('books_con_back');
 							books_con_back.onclick = function() {
 								books_con.style.right = '-100vw';
 							}
-							var arr_books = [];
 							books_add.onclick = function() {
 								if(arr_books.indexOf(oIndex) != -1) {
 									alert('此书已存在书架中！')
@@ -253,9 +231,9 @@ window.onload = function() {
 									alert('添加成功！');
 									var bookrack_li = bookrack.getElementsByTagName('li');
 									for(var i = 0; i < bookrack_li.length; i++) {
-										bookrack_li[i].index = i;
-
+										bookrack_li[i].index = arr_books[i];
 										bookrack_li[i].onclick = function() {
+											var oIndex2=this.index;
 											bookrack_books.style.right = '0';
 											if(window.XMLHttpRequest) {
 												var xhr3 = new XMLHttpRequest();
@@ -266,10 +244,8 @@ window.onload = function() {
 											xhr3.send()
 											xhr3.onreadystatechange = function() {
 												if(xhr3.readyState === 4 && xhr3.status === 200) {
-													//只要是ajax获取的都是string
-													var txt3 = JSON.parse(xhr3.responseText)
-
-													bookrack_books.innerHTML = "<h3>" + txt3.book[oIndex].title + "</h3><button id='bookrack_books_back'>&lt;</button><p>" + txt3.book[oIndex].con + "</p>"
+													var txt3 = JSON.parse(xhr3.responseText);
+													bookrack_books.innerHTML = "<h3>" + txt3.book[oIndex2].title + "</h3><button id='bookrack_books_back'>&lt;</button><p>" + txt3.book[oIndex2].con + "</p>"
 													var bookrack_books_back = document.getElementById('bookrack_books_back');
 													bookrack_books_back.onclick = function() {
 														bookrack_books.style.right = '-100vw';
